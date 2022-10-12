@@ -7,16 +7,25 @@
 #third command prints IP address
 #df command allows to print displayed as a human-friendly number
 
-echo "
-      FQDN: $(hostname)
-      Host Information:
-          Machine ID:$(hostnamectl)
-      Ip address
-      $(hostname -I)
-      Root Filesystem Status:
-      $(df /home) 
-     "
- 
+#print out the headline
+echo "Report for myvm
+==============="
+
+#print out the fully qualified domain name
+echo "FQDN: $(hostname --fqdn)"
+
+#print out opreating system name and verision 
+source /etc/os-release 
+echo "opreating system name and version: $PRETTY_NAME"
+
+#print IP address 
+echo "IP Address:  $(hostname -I | awk '{print $1}')"
+
+#print out Root Filesystem Free Space
+echo "Root Filesystem Free Space: $(du -h)"
+
+#print the last line 
+echo "==============="
 
 exit
 
