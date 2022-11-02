@@ -65,6 +65,7 @@ default_router_name=$(getent hosts $default_router_address|awk '{print $2}')
 
 [ "$verbose" = "yes" ] && echo "Checking for external IP address and hostname"
 # finding external information relies on curl being installed and relies on live internet connection
+sudo apt install curl
 external_address=$(curl -s icanhazip.com)
 external_name=$(getent hosts $external_address | awk '{print $2}')
 
