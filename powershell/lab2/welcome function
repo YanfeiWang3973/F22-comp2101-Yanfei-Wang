@@ -1,0 +1,10 @@
+
+function welcome {
+"welcome to the pc $env:computername your user name is $env:username"
+$now = get-date -format 'HH:MM tt on dddd'
+write-output "It is $now"
+}
+
+welcome
+
+#little bit change compare to my screenshots
