@@ -1,5 +1,5 @@
-﻿function get-hardwarei {
-Write-Host "System hardware description:"
+﻿function get-hardwareinfo {
+Write-Host "System hardware information:"
 get-CimInstance -ClassName win32_computersystem | Format-List
 }
 
@@ -19,7 +19,7 @@ NumberOfCores,
 }
 
 function get-raminf {
-Write-Host "Summary of the RAM installed:"
+Write-Host "RAM infomation:"
 $Capacity = 0
 get-CimInstance -ClassName win32_physicalmemory |
 foreach {
@@ -37,7 +37,7 @@ Format-Table -auto Manufacturer, Description, "Size(GB)", Bank, Slot
 }
 
 function get-mydisks {
-Write-Host "Physical drive info:"
+Write-Host "Physical drive infomation:"
 Get-WmiObject -classname Win32_DiskDrive |
 where-object DeviceID -ne $NULL |
 Foreach-Object {
@@ -81,7 +81,7 @@ get-wmiobject -class win32_videocontroller |
 Format-List @{n="Video Card Vendor"; e={$_.AdapterCompatibility}}, Description, @{n="Resolution"; e={$sum -as [string]}}
 }
 
-get-hardwarei
+get-hardwareinfo
 get-osinfo
 get-CPU
 get-raminf
